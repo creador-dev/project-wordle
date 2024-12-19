@@ -1,14 +1,14 @@
-import React from 'react';
+import React from "react";
 
-function GuessInput({ handleSubmitGuess }) {
-  const [tentativeGuess, setTentativeGuess] = React.useState('');
+function GuessInput({ gameStatus, handleSubmitGuess }) {
+  const [tentativeGuess, setTentativeGuess] = React.useState("");
 
   function handleSubmit(event) {
     event.preventDefault();
 
     handleSubmitGuess(tentativeGuess);
 
-    setTentativeGuess('');
+    setTentativeGuess("");
   }
 
   return (
@@ -21,6 +21,7 @@ function GuessInput({ handleSubmitGuess }) {
         pattern="[a-zA-Z]{5}"
         title="5 letter word"
         value={tentativeGuess}
+        disabled={gameStatus !== "running"}
         onChange={(event) => {
           const nextGuess = event.target.value.toUpperCase();
           setTentativeGuess(nextGuess);
